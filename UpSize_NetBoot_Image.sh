@@ -10,6 +10,7 @@
 # start the script by typing the following:  
 # "sh UpSize_NetBoot_Image.sh"
 ##########################################
+# Versions: 10.8, 10.9, 10.10
 
 # Rename the Original NetBoot image to NetBoot-old
 mv NetBoot.dmg NetBoot-old.dmg
