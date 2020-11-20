@@ -120,10 +120,10 @@ then
 fi
 
 osx=$(/usr/bin/defaults read /System/Library/CoreServices/SystemVersion ProductVersion)
-maj=$(/usr/bin/defaults read /System/Library/CoreServices/SystemVersion ProductVersion | awk '{print substr($1,1,2)}')
-ref=$(/usr/bin/defaults read /System/Library/CoreServices/SystemVersion ProductVersion | awk '{print substr($1,4,2)}')
+maj=$(/usr/bin/defaults read /System/Library/CoreServices/SystemVersion ProductVersion | /usr/bin/awk -F. '{print $1}')
+ref=$(/usr/bin/defaults read /System/Library/CoreServices/SystemVersion ProductVersion | /usr/bin/awk -F. '{print $2}')
 
-if [ $maj -gt 10 ]
+if [ $maj -gt 11 ]
 then
 	echo
 	echo "Check OS string format & OS X systemsetup utility for script compatibility with OS X version $osx"
@@ -133,7 +133,7 @@ fi
 
 if [ "$timeZone" != "" ]
 then
-	if [ $ref -lt 5 ]
+	if [[ $maj -eq 10 ]] && [[ $ref -lt 5 ]]
 	then
 		echo
 		echo "Setting time zone for OS X $osx..."
